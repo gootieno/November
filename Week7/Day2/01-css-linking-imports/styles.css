@@ -23,3 +23,12 @@ h1 {
     margin: 150px;
 }
 
+#main-heading {
+    color: blue;
+}
+
+#main-heading[name="heading"]{
+    color: red;
+}
+
+
