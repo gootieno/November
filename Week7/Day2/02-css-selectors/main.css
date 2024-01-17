@@ -1,4 +1,38 @@
 /* Your code here */
+#page-title {
+    font-weight: bold;
+}
+
+.pagenum {
+    position: absolute;
+    right: 10px;
+    font-size: small;
+}
+
+p {
+    text-align: justify;
+    margin: .75em 0
+}
+
+pre {
+    margin: 100px auto;
+    width: fit-content;
+}
+
+a {
+    text-decoration: none;
+}
+
+.td2 > :any-link:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+pre > a { 
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+}
 
 /* ===== DO NOT EDIT BELOW THIS COMMENT ===== */
 
