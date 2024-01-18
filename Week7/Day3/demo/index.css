@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+}
+
+#parent-container {
+    border: 2px solid red;
+    padding: 5px;
+    display: flex;
+
+    /* flex-direction: column; */
+    height: 500px;
+}
+
+.children {
+    border: 2px solid blue;
+    width: 150px;
+    height: 150px;
+
+    flex-basis: 100%;
+    flex-grow: 0;
+    flex-shrink: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
