@@ -85,6 +85,11 @@ header {
 /* ----- Phase 1 - Moderate Screen ----- */
 
 /* Your code here */
+@media screen and (min-width: 600px) and (max-width:650px){
+    header {
+        border: 2px solid red;
+    }
+}
 
 /* ----- Phase 1 - Wide Screen ----- */
 
