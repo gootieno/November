@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet">
+    <title>Mmmmmm</title>
+</head>
+<body>
+    <header id="header-container">
+        <div id="logo-container">
+            <h2 class="logo-heading">Mmmmmm</h2>
+        </div>
+        <nav id="nav-container">
+            <a href="#" class="nav-links">Our story</a>
+            <a href="#" class="nav-links">Membership</a>
+            <a href="#" class="nav-links">Write</a>
+            <a href="#" class="nav-links">Sign in</a>
+            <a href="#" class="nav-links nav-button">Get started</a>
+        </nav>
+    </header>
+
+    <main id="main-container">
+        <div id="curious-container">
+            <h2 class="curious-heading">Stay curious</h2>
+            <p class="curious-paragraph">Discover stories, thinking, and expertise from writers on any topic.</p>
+            <a href="#" class="curious-link nav-button">Start reading</a>
+        </div>
+
+        <div id="m-container">
+
+        </div>
+    </main>
+    <script>
+        const mContainer = document.getElementById('m-container')
+        for(let i = 0; i < 500; i++){
+            const span = document.createElement('span')
+            span.innerText = 'M'
+            mContainer.append(span)
+        }
+    </script>
+</body>
+</html>
