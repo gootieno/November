@@ -41,7 +41,7 @@ let posts = {
 };
 
 let nextPostId = 3;
-let nextCommentId = 3;
+let nextCommentId = 4;
 
 class NotFoundError extends Error {
   constructor(...params) {
