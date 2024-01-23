@@ -11,29 +11,80 @@ function getNewDogId() {
 const server = http.createServer((req, res) => {
   console.log(`${req.method} ${req.url}`);
 
-  let reqBody = "";
-  req.on("data", (data) => {
+  let reqBody = "";// affiliate=nasa&query=Mars+Rover%21
+  req.on("data", (data) => { 
     reqBody += data;
   });
 
   // When the request is finished processing the entire body
-  req.on("end", () => {
+  req.on("end", () => { 
     // Parsing the body of the request
-    if (reqBody) {
+    if (reqBody) { // affiliate=nasa&query=Mars+Rover%21
       req.body = reqBody
-        .split("&")
-        .map((keyValuePair) => keyValuePair.split("="))
-        .map(([key, value]) => [key, value.replace(/\+/g, " ")])
-        .map(([key, value]) => [key, decodeURIComponent(value)])
-        .reduce((acc, [key, value]) => {
+        .split("&") // [affiliate=nasa,query=Mars+Rover%21]
+        .map((keyValuePair) => keyValuePair.split("=")) // [[affiliate,nasa],[query,Mars+Rover%21]]
+        .map(([key, value]) => [key, value.replace(/\+/g, " ")]) // [[affiliate,nasa],[query,Mars Rover%21]]
+        .map(([key, value]) => [key, decodeURIComponent(value)]) // [[affiliate,nasa],[query,Mars Rover!]]
+        .reduce((acc, [key, value]) => { // [[affiliate,nasa],[query,Mars Rover!]]
           acc[key] = value;
           return acc;
         }, {});
       console.log(req.body);
+      // {
+      //   affiliate: "nasa", 
+      //   query: "Mars Rover!"
+      // }
     }
     // Do not edit above this line
 
     // define route handlers here
+    if(req.method === "GET" && req.url === '/'){
+      /*
+        get res body
+        set status code
+        set header
+        return res body
+      */
+      const responseBody = 'Dog Club'
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/plain')
+      return res.end(responseBody)
+    }
+
+    if(req.method === 'GET' && req.url.startsWith('/dogs')){
+      const dogUrl = req.url
+      console.log('dog url ', dogUrl)
+      const splitUrl = dogUrl.split('/')
+      console.log('split url ', splitUrl)
+      const dogId = splitUrl[splitUrl.length - 1] // possible bug here
+
+      const responseBody = `Dog details for dogId: ${dogId}`
+
+      res.statusCode = 200;
+      res.setHeader('content-type', 'text/plain')
+      return res.end(responseBody)
+    }
+
+    if(req.method === "GET" && req.url === '/dogs'){
+      /*
+        get res body
+        set status code
+        set header
+        return res body
+      */
+      const responseBody = 'Dog Index'
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/plain')
+      return res.end(responseBody)
+    }
+
+    if(req.method === "POST" && req.url === '/dogs'){
+      const dogId = getNewDogId()
+
+      res.statusCode = 302;
+      res.setHeader('location', `/dogs/${dogId}`)
+      return res.end()
+    }
 
     // Do not edit below this line
     // Return a 404 response when there is no matching route handler
