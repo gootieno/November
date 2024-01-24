@@ -39,30 +39,23 @@ Your goal is to create an interface for the game using HTML pages, HTML links,
 and HTML form submissions. In this practice, you will create the following
 endpoints that display the HTML pages and process the forms:
 
--   `GET /` - Page to start the game with a form to name a new player
-    <br/>Submission of the form will start the Game
-
--   `POST /player` - Create a new player of the game
-    <br/>Note: Only one player can be created for this game, so `player` is a
+- `GET /` - Page to start the game with a form to name a new player
+  - Submission of the form will start the Game
+- `POST /player` - Create a new player of the game
+  - Note: Only one player can be created for this game, so `player` is a
     singular resource and not a collection, which is why the resource in the
     route is singular and not plural
-
--   `GET /rooms/:roomId` - Page to view a room in the world
-    <br/>The player of the game should only be able to view the room they are
+- `GET /rooms/:roomId` - Page to view a room in the world
+  - The player of the game should only be able to view the room they are
     currently in
-
--   `GET /rooms/:roomId/:direction` - Navigate to a room in a direction
-    <br/>The player of the game should only be able to go in a specified
-    direction from their current room
-
--   `POST /items/:itemId/action` - Attempt an action with the specified item
-    <br/>The player should only be able to interact with the items in their
+- `GET /rooms/:roomId/:direction` - Navigate to a room in a direction
+  - The player of the game should only be able to go in a specified direction
+    from their current room
+- `POST /items/:itemId/action` - Attempt an action with the specified item
+  - The player should only be able to interact with the items in their
     inventory or the room
 
-Start the server by typing in the command `node server.js`, and you can use
-either the browser or Postman to test your endpoints. Let's get started!
-
-## Phase 1: `GET /`
+## Phase 1: GET /
 
 The `GET /` endpoint should display the **new-player.html** view page. This page
 has a form for filling out the name of the player and the room that the player
@@ -82,27 +75,19 @@ You should have identified the `availableRoomsToString()` method on a `World`
 instance which returns a string of HTML containing `<option>` HTML tags for
 each `Room` in the `World` instance.
 
-Instructions:
+In the server file, create a route handler for `GET /` that will display the
+**new-player.html** view page and will replace the `availableRooms` variable
+with the string returned from the `availableRoomsToString()` instance method on
+the loaded `World` instance initialized at the top of the file after the
+imports.
 
--   In the server.js file under Phase 1, create a route handler for `GET /`.
-
--   The route handler will display the **new-player.html** view page.
-    (Don't forget to specify that the encoding is `utf-8` for the
-    fs.readFileSync)
-
--   Set your route up so that it will replace the `availableRooms` variable
-    with the string returned from the `availableRoomsToString()` instance
-    method, which was imported from the `World` instance at the top of the file.
-
--   Complete the status code, headers, etc.
-
--   Make sure to test this route by starting the server and making a `GET /`
-    request on the browser or Postman.
+Make sure to test this route by starting the server and making a `GET /` request
+on the browser or Postman.
 
 In the next phase, you will create the route handler which will process this
 form in this view page.
 
-## Phase 2: `POST /player`
+## Phase 2: POST /player
 
 The `POST /player` endpoint creates a new player for the game with the `name`
 given in the request body and will start the player in the starting `Room` with
@@ -127,33 +112,15 @@ the form data submitted from the form in the **new-player.html** view page.
 Assign the created player to the `player` variable defined at the top of the
 server file. There can only be one player per server instance.
 
-Instructions:
+Afterwards, redirect the client to the route `/rooms/:roomId` where the
+`:roomId` route parameter is replaced with the starting room of the newly
+created player.
 
--   Create a route handler for `POST /player`.
+Make sure to test this endpoint! Test the endpoint on Postman first. After you
+confirm the response components in Postman, try submitting the player creation
+form on the browser and confirm that it works.
 
--   Obtain the room ID and name from the request. (Hint: You can use
-    destructuring to achieve this!)
-
--   Create a new player with the info obtained. Make sure you are **NOT**
-    creating the player directly with the room ID, and is instead passing in the
-    room object of the chosen room into the new player.
-
--   Redirect the client to the route `/rooms/:roomId` where the `:roomId` route
-    parameter is replaced with the starting room of the newly created player.
-
-**Note**:
-(This endpoint won't return a response until phase 3 is completed, come back to
-see the response after you've completed phase 3)
-Make sure to test this endpoint! Test the endpoint on Postman first, when
-testing on Postman without implementing phase 3 the expected result will be
-loading... Postman is expecting a response but since phase 3 has not been
-implemented it's waiting for one. After you confirm that it is loading in
-Postman proceed to phase 3.
-
-Come back to this after phase 3 and try submitting the player creation form on
-the browser and confirm that it works.
-
-## Phase 3: `GET /rooms/:roomId`
+## Phase 3: GET /rooms/:roomId
 
 At this point, you may have noticed that every time the server restarts, the
 information the player is reset. Do you understand why that is? Make sure to
@@ -167,11 +134,11 @@ The `GET /rooms/:roomId` endpoint should display the details of the specified
 room. Take a look at the **room.html** view page and take note of all the
 variables that should be replaced in the HTML.
 
--   `roomName` - specified room's name
--   `roomId` - specified room's id
--   `roomItems` - list of the specified room's items
--   `inventory` - list of the player's items
--   `exits` - links to each of the rooms connected to the specified room
+- `roomName` - specified room's name
+- `roomId` - specified room's id
+- `roomItems` - list of the specified room's items
+- `inventory` - list of the player's items
+- `exits` - links to each of the rooms connected to the specified room
 
 Take a look at the `Player` and `Room` class API's and identify the appropriate
 properties or methods for each of these values.
@@ -183,26 +150,6 @@ components before sending the response.
 Test this route by making the request on Postman. After you confirm the response
 components in Postman, try submitting the player creation form on the browser.
 
-Instructions:
-
-**Note**: All route handlers after phase 2 should require a player. Type in your
-code before the route handler of Phase 3 to redirect to the home page if there
-is no player. Since redirect will be use a lot, consider adding a helper
-function for that.
-
--   Create a route handler for `GET /rooms/:roomId`.
-
--   Obtain the current room Id by parsing the URL.
-
--   Update the html file for `room.html` to replace all the variables with
-    details obtained from the player's current room.
-
--   Complete the status code, headers, etc.
-
--   Make sure to test this route by starting the server and on the browser,
-    navigate to the home page, submit a new player, and make sure the
-    redirect from phase 2 works.
-
 ### Redirect to the current room
 
 If the specified `:roomId` route parameter is not the `roomId` of the
@@ -210,7 +157,7 @@ player's current room, then the server's response should redirect the client to
 the correct current room of the player instead of displaying the **room.html**
 view page as the response.
 
-## Phase 4: `GET /rooms/:roomId/:direction`
+## Phase 4: GET /rooms/:roomId/:direction
 
 In the room details view, **room.html** you should be able to see the links to
 each of the rooms connected to the specified room with a direction.
@@ -225,33 +172,16 @@ the specified direction from the current room.
 To move the player to the room in the specified direction, take a look at the
 `Player` class to identify and use a method to move the player.
 
-Instructions:
-
-**Note:** just like in the previous phase, if the specified `:roomId` route
+Additionally, just like in the previous phase, if the specified `:roomId` route
 parameter is not the `roomId` of the player's current room, then the server's
 response should redirect the client to the correct current room of the player
 instead of moving the player to a different room.
 
--   Create a route handler for `GET /rooms/:roomId/:direction`
+Make sure to test this route by making the request on Postman. After you confirm
+the response components in Postman, try navigating to another room using one of
+the links in the room detail page.
 
--   Obtain the current room Id and the directions by parsing the URL
-
--   Make sure to check that the roomId matches the player's current room
-
--   Use a method imported from the `Player` class to move the player (Hint:
-    the move direction does not take the whole word, just the first letter of
-    each direction.)
-
--   Redirect the player to the next room
-
--   Try to implement a try/catch to redirect the player back to the current room
-    in case of errors!
-
--   Make sure to test this route by making the request on Postman. After you
-    confirm the response components in Postman, try navigating to another room
-    using one of the links in the room detail page on the browser
-
-## Phase 5: `POST /items/:itemId/:action`
+## Phase 5: POST /items/:itemId/:action
 
 If you inspect the HTML elements in the first room details view in the browser
 or the response in Postman, you should see a form for taking the rock which is
@@ -263,9 +193,9 @@ Create a `POST /items/:itemId/:action` endpoint that will allow the player to
 do an action on the specified item. The `:action` route parameter can be one of
 the following phrases:
 
--   `drop`
--   `eat`
--   `take`
+- `drop`
+- `eat`
+- `take`
 
 Examine the `Player` class to identify methods for these actions on an item
 that has the same `itemId` as the `:itemId` route parameter.
@@ -273,24 +203,9 @@ that has the same `itemId` as the `:itemId` route parameter.
 Based on the `:action` route parameter, try allowing the player to perform the
 action on the specified item by the `:itemId` route parameter.
 
-Instructions:
-
--   Create a route handler for `POST /items/:itemId/:action`.
-
--   Obtain the current itemId and player action by parsing the URL.
-
--   Create a switch statement to handle the different actions taken, and refer
-    to the `Player` class for the methods available. (Hint: You can find out
-    more about switch statements (here)[switch]!)
-
--   Redirect the player to the next room
-
--   Try to implement a try/catch to redirect the player back to the current room
-    in case of errors!
-
--   Make sure to test this route by making the requests for different actions on
-    Postman. After you confirm the response components in Postman, try
-    performing those actions in the browser.
+Make sure to test this route by making the requests for different actions on
+Postman. After you confirm the response components in Postman, try performing
+those actions in the browser.
 
 ### Error handling
 
@@ -318,4 +233,3 @@ particular item. Like a flashlight!
 
 [http://localhost:5000]: http://localhost:5000
 [starter]: https://github.com/appacademy/practice-for-week-08-adventure-game-navigation-long-practice
-[switch]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
