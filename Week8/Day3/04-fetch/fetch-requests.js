@@ -24,3 +24,14 @@ Paste your code for fetch requests here once you finish each task.
 /* ============== 4. Print the body of the response as text =============== */
 
 // Your code here
+
+const getBeautyProducts = async () => {
+    const response = await fetch('/categories/beauty/products')
+    console.log('response ', response)
+
+    console.log('response status ', response.status)
+
+    console.log('response text ', await response.text())
+}
+
+getBeautyProducts()
