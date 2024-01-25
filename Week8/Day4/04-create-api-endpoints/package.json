@@ -3,16 +3,17 @@
     "version": "1.0.0",
     "description": "Practice creating endpoints for an http server",
     "scripts": {
-      "start": "node server.js",
-      "test": "mocha"
+        "start": "nodemon server.js",
+        "test": "mocha"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "chai": "^4.3.7",
-      "chai-http": "^4.3.0",
-      "chai-json-schema": "^1.5.1",
-      "mocha": "^10.2.0"
+        "chai": "^4.3.7",
+        "chai-http": "^4.3.0",
+        "chai-json-schema": "^1.5.1",
+        "mocha": "^10.2.0",
+        "nodemon": "^3.0.3"
     }
-  }
+}

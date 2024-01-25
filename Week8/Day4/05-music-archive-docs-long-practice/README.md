@@ -30,7 +30,7 @@ Below is a list of all the resources for this music archive server.
   - albumId: unique identifier
   - name
   - artistId: of the artist that released the album
-- songs:
+- songs: look at server code 
   - songId: unique identifier
   - name
   - lyrics
