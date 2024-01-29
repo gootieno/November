@@ -6,3 +6,5 @@ console.log(" .`'  . .``  -.  ...`-.. '`--```  `   ---.-L6Si.` '`' `- `` Y64,`' 
 console.log("   .`.-.  ``` -.   - .--`-  `'  ...  ` -  .+C6V+..`'`.'     '.vhS3eeI#4VeI4IFz1{*~.-   ' ` .`\n");
 console.log("  .. -  -```.``-`  -'-'.-.''`''.---'  `...v$9}  '-' '``'  --.'':+==r**==r*rr|ilJZ6f=--  . ' `\n");
 console.log("..'`. ``-. (7[TTTTYT1TYYYYY1TLv< - --.*CA4=. '.  ''  .' .. -.-````'. `-. ` ` ' i$wv `..  ''.-\n");
+
+console.log('p tag  ', document.querySelector('p'))

@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
     const ext = path.extname(req.url);
     if (req.method === "GET" && ext) {
       try {
-        const resBody = readFileSync('.' + req.url);
+        const resBody = readFileSync('./assets' + req.url);
         res.statusCode = 200;
         if (ext === ".jpg" || ext === ".jpeg") {
           res.setHeader("Content-Type", "image/jpeg");
