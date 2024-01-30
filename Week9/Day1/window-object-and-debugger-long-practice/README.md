@@ -28,7 +28,7 @@ __index.js__ file. These functions exist in __/assets/js/manipulate.js__ and
 __/assets/js/search.js__. Your task will be to properly export those functions
 from those files and import them into the __index.js__ file using ES6 modules.
 
-Debug your import/export statements using the __"Console"__ tab in your browser's
+Debug your import/export statements using the "Console" tab in your browser's
 Developer Tools.
 
 ## Phase 3: Filling out the Modules
@@ -46,17 +46,16 @@ the text content of the `body` HTML element to "Hello World!".
 document.body.innerText = "Hello World!"
 ```
 
-Use the __"Console"__ tab in your browser's Developer Tools to test your code. Add
+Use the "Console" tab in your browser's Developer Tools to test your code. Add
 `debugger`s in your code to freeze the code execution on that line to
 examine the variables at that time of execution.
 
-## BONUS Phase
-Here you will combine your knowledge of
+Next, move to __/assets/js/search.js__. Here you will combine your knowledge of
 search algorithms and the DOM. You can think of the DOM as a tree,
 where each item in the DOM (e.g. `<div>`, `<p>`, etc.) can be considered a
 node of the tree.
 
-The search functions are described in `/assets/js/search.js` for you to complete (e.g.
+Some search functions are described in the file for you to complete (e.g.
 `findElementById`, `findElementsOfTag`, etc.). You may find the [`.children`],
 [`.tagName`], and [`.classList`] properties of an HTML element to be useful. If
 necessary, you may create your own helper functions.
