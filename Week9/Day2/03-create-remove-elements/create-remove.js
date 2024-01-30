@@ -6,7 +6,7 @@ add.addEventListener("click", async () => {
         const data = await res.json();
 
         const url = data.message; // URL of new dog image
-
+        console.log('url ', url)
         /*--------------- Get breed (Hint: Parse from URL) ---------------- */
         // Your code here
 
@@ -17,6 +17,23 @@ add.addEventListener("click", async () => {
 
         /* Add the new dog card as a child to the ul in the .gallery element */
         // Your code here
+        /*
+            <li>
+                <figure>
+                    <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg" />
+                    <figcaption>hound-afghan</figcaption>
+                </figure>
+            </li>
+
+            1. create/select elements
+
+            2. manipulation
+                adding inner text
+                giving it a class name
+                styling it
+
+            3. append to live element*
+        */
 
     } catch (e) {
         console.log("Couldn't fetch dog :(")
