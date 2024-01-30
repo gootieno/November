@@ -46,14 +46,14 @@ add.addEventListener("click", async () => {
     const figCaption = document.createElement("figcaption");
 
     // img.setAttribute("src", url);
-    img.src = url
+    img.src = url;
     figCaption.innerText = dogBreed;
+    li.style.border = "1px solid red";
 
     figure.append(img, figCaption);
     li.appendChild(figure);
 
     container.appendChild(li);
-
   } catch (e) {
     console.log("Couldn't fetch dog :(");
   }
@@ -66,7 +66,7 @@ removeFirst.addEventListener("click", () => {
   // Your code here
   /*-------------------- Remove the first dog card --------------------- */
   // Your code here
-  document.querySelector("ul").children[0].remove()
+  document.querySelector("ul").children[0].remove();
 });
 
 /************************** REMOVE LAST DOG BUTTON ***************************/
@@ -80,4 +80,13 @@ removeLast.addEventListener("click", () => {
   const last = document.querySelector("ul").children[length - 1];
   //   console.log(last);
   last.remove();
+});
+
+const themeButton = document.getElementById("theme-button");
+themeButton.addEventListener("click", () => {
+  if (document.body.className.includes("dark-mode")) {
+    document.body.classList.remove("dark-mode");
+  } else {
+    document.body.classList.add("dark-mode");
+  }
 });

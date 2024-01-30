@@ -1,3 +1,7 @@
+.dark-mode {
+   background-color: rgb(32, 2, 32); 
+}
+
 .header {
     padding: 1rem 1rem;
     display: grid;
