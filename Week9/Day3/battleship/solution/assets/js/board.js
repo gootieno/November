@@ -34,13 +34,6 @@ export default class Board {
         return grid;
     }
 
-    makeHit(row, col) {
-        if (this.grid[row][col]) {
-            this.numRemaining--;
-        }
-        return this.grid[row][col];
-    }
-
     verifyFit(grid, length, x, y, orientation) {
         if (orientation === "x+") {
             if (x + length - 1 > this.numCols - 1) return false;
@@ -82,7 +75,8 @@ export default class Board {
         }
     } 
 
-    isGameOver() {
+    isDone() {
         return this.numRemaining === 0;
     }
 }
+
